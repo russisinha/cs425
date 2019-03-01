@@ -1,0 +1,173 @@
+
+CREATE SEQUENCE CUST_AUTO_ID
+START WITH 1
+INCREMENT BY 1;
+
+create table customers(
+cust_ID int primary KEY,
+email varchar(30),
+password varchar(25)
+);
+
+CREATE OR REPLACE TRIGGER TR_CUST_AUTO_ID
+BEFORE INSERT
+ON customers
+REFERENCING NEW AS NEW OLD AS OLD
+FOR EACH ROW
+BEGIN
+  if(:new.cust_ID is null) then
+  SELECT CUST_AUTO_ID.nextval
+  INTO :new.cust_ID
+  FROM dual;
+  end if;
+END;
+/
+ALTER TRIGGER TR_CUST_AUTO_ID ENABLE;
+
+
+create table CustomerInfo(
+cust_ID int references customers
+on delete cascade,
+f_name varchar(50),
+l_name varchar(50),
+add_street varchar(50),
+add_apt_numb varchar(10),
+add_city varchar(50),
+add_state varchar(50),
+add_zip varchar(15),
+add_country varchar(50),
+phone varchar(15)
+);
+
+--create table CustomerPhone(
+--cust_ID int references customers
+--on delete cascade,
+--phone varchar(50)
+--);
+
+create table Creditcard(
+cust_ID int references customers
+on delete cascade,
+cc_name varchar(75),
+cc_numb varchar(16),
+cc_exp_date varchar(5),
+cc_cvv varchar(3),
+primary key(cust_ID, cc_numb)
+);
+
+
+CREATE SEQUENCE EMP_AUTO_ID
+START WITH 1
+INCREMENT BY 1;
+
+create table Employees(
+emp_ID int primary key,
+email varchar(30),
+password varchar(25)
+);
+
+CREATE OR REPLACE TRIGGER TR_EMP_AUTO_ID
+BEFORE INSERT
+ON employees
+REFERENCING NEW AS NEW OLD AS OLD
+FOR EACH ROW
+BEGIN
+  if(:new.emp_ID is null) then
+  SELECT EMP_AUTO_ID.nextval
+  INTO :new.emp_ID
+  FROM dual;
+  end if;
+END;
+/
+ALTER TRIGGER TR_EMP_AUTO_ID ENABLE;
+
+
+create table sizes(
+size_id varchar(5) primary key,
+length int,
+width int,
+height int
+);
+
+create table vendors(
+vendor_name varchar(25) primary key
+);
+
+create table Product(
+UPC	varchar(25) primary key,
+prod_name varchar(25),
+price numeric(10,2),
+brand varchar(20),
+vendor_name varchar(25) references vendors
+on delete cascade,
+size_id varchar(5) references sizes
+on delete cascade
+);
+
+create table CustomerOrders(
+order_ID int,
+cust_ID int references customers
+on delete cascade,
+UPC varchar(25) references Product
+on delete cascade,
+item_qty int,
+amount_paid numeric(10,2),
+purchase_date date default SYSTIMESTAMP
+);
+
+create table CustomerCart(
+row_ID int,
+cust_ID int references customers
+on delete cascade,
+UPC varchar(25) references Product
+on delete cascade,
+item_qty int,
+dateadded date default SYSTIMESTAMP
+);
+
+
+CREATE SEQUENCE STORE_AUTO_ID
+START WITH 1
+INCREMENT BY 1;
+
+create table stores(
+store_ID int primary key,
+store_name varchar(25),
+add_street varchar(50),
+add_city varchar(50),
+add_state varchar(50),
+add_zip varchar(15),
+add_country varchar(50),
+sales_tax int,
+store_size int
+);
+
+CREATE OR REPLACE TRIGGER TR_STORE_AUTO_ID
+BEFORE INSERT
+ON stores
+REFERENCING NEW AS NEW OLD AS OLD
+FOR EACH ROW
+BEGIN
+  if(:new.store_ID is null) then
+  SELECT STORE_AUTO_ID.nextval
+  INTO :new.store_ID
+  FROM dual;
+  end if;
+END;
+/
+ALTER TRIGGER TR_STORE_AUTO_ID ENABLE;
+
+
+create table StoreInventory(
+store_ID int references stores
+on delete cascade,
+UPC varchar(25) references Product
+on delete cascade,
+qty int
+);
+
+set autocommit on;
+
+
+
+

@@ -1,0 +1,46 @@
+insert into sizes values('S', 5, 5, 5);
+insert into sizes values('M', 15, 15, 15);
+insert into sizes values('L', 25, 25, 25);
+insert into sizes values('XL', 35, 35, 35);
+
+insert into vendors(vendor_name) values('Vendor A');
+insert into vendors(vendor_name) values('Vendor B');
+insert into vendors(vendor_name) values('Vendor C');
+
+insert into customers(email, password) values ('john@gmail.com', '123');
+insert into customers(email, password) values ('emily@gmail.com', '456');
+insert into customers(email, password) values ('tim@gmail.com', '789');
+
+insert into customerinfo(cust_ID, f_name, l_name, add_street, add_apt_numb, add_city, add_state, add_zip, add_country, phone) values(1, 'John', 'Smith', '123 Candy Cane Lane', '5310', 'Chicago', 'Illinois', '60103', 'United States', '3127745666');
+insert into customerinfo(cust_ID, f_name, l_name, add_street, add_apt_numb, add_city, add_state, add_zip, add_country, phone) values(2, 'Emily', 'Roberts', '456 Forest Street', '301', 'Springfield', 'Illinois', '60107', 'United States', '3123395867');
+insert into customerinfo(cust_ID, f_name, l_name, add_street, add_apt_numb, add_city, add_state, add_zip, add_country, phone) values(3, 'Tim', 'Walsh', '678 Tree Ct.', '222', 'Detroit', 'Michigan', '60194', 'United States', '4853948723');
+
+insert into Creditcard(cust_ID, cc_name, cc_numb, cc_exp_date, cc_cvv) values(1, 'John Smith', '4714562315489560', '01/19', '889');
+insert into Creditcard(cust_ID, cc_name, cc_numb, cc_exp_date, cc_cvv) values(1, 'John Smith', '1514662345489560', '02/19', '501');
+insert into Creditcard(cust_ID, cc_name, cc_numb, cc_exp_date, cc_cvv) values(2, 'Emily Roberts', '9714562315489700', '01/20', '301');
+
+insert into employees(email, password) values('jacob@gmail.com', '123');
+insert into employees(email, password) values('jen@gmail.com', '456');
+insert into employees(email, password) values('brad@gmail.com', '789');
+
+insert into Product(UPC, prod_name, price, brand, size_id, vendor_name) values('01234567891', 'laptop', 500.00, 'Dell', 'M', 'Vendor A');
+insert into Product(UPC, prod_name, price, brand, size_id, vendor_name) values('01262145236', 'notebook', 5.00, 'IIT', 'S', 'Vendor A');
+insert into Product(UPC, prod_name, price, brand, size_id, vendor_name) values('02548931662', 'jacket', 100.00, 'The North Face', 'M', 'Vendor B');
+insert into Product(UPC, prod_name, price, brand, size_id, vendor_name) values('02154741526', 'iPhone', 600.00, 'Apple', 'S', 'Vendor C');
+insert into Product(UPC, prod_name, price, brand, size_id, vendor_name) values('25148996326', 'perfume', 60.00, 'Axe', 'S', 'Vendor B');
+
+insert into customerorders(order_ID, cust_ID, UPC, item_qty, amount_paid) values(1, 1, '01234567891', 1, 500.00);
+insert into customerorders(order_ID, cust_ID, UPC, item_qty, amount_paid) values(1, 1, '01262145236', 1, 5.00);
+insert into customerorders(order_ID, cust_ID, UPC, item_qty, amount_paid) values(1, 1, '02548931662', 1, 100.00);
+insert into customerorders(order_ID, cust_ID, UPC, item_qty, amount_paid) values(2, 1, '02154741526', 1, 600.00);
+insert into customerorders(order_ID, cust_ID, UPC, item_qty, amount_paid) values(2, 1, '25148996326', 2, 60.00);
+
+insert into stores(store_name, add_street, add_city, add_state, add_zip, add_country, sales_tax, store_size) values('Big Value', '231 Blue Street', 'Chicago', 'Illinois', '60101', 'United States', 10, 1000);
+
+insert into storeinventory(store_ID, UPC, qty) values(1, '01234567891', 30);
+insert into storeinventory(store_ID, UPC, qty) values(1, '01262145236', 25);
+insert into storeinventory(store_ID, UPC, qty) values(1, '02548931662', 10);
+insert into storeinventory(store_ID, UPC, qty) values(1, '02154741526', 40);
+insert into storeinventory(store_ID, UPC, qty) values(1, '25148996326', 35);
+
+commit;
