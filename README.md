@@ -1,6 +1,6 @@
 # CS 425 - Database Orgaization
 
-This repository contains assignments and project for CS425 during the the term of Fall 2017
+This repository contains assignments and project for CS425 during the term of Fall 2017
 
 # Project details
 
