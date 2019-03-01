@@ -15,4 +15,4 @@ The application should support the following actions:
 4. Employees can check and update the products/stock information. Update happens when products are sold to the store by the vendor(s).
 5. When new stock is added to a store, the system checks that if the total size of all products stored in this store exceeds the size of the store (warehouse).
 
-For more details go to the [Project walkthrough](master/project/Project%20walkthrough.pdf)
+For more details go to the [Project walkthrough](project/Project%20walkthrough.pdf)
